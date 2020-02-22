@@ -19,7 +19,7 @@
 		<section class="form">
 			<h2 class="form__title">New user?</h2>
 			<p class="form__description">Use the form below to create your account.</p>
-			<form action="#" method="post">
+			<form class="form__form" action="#" method="post">
 				<div class="form__wrapper">
 					<label class="form__text-label" for="first-name-field">First Name</label>
 					<input class="form__text-field" type="text" name="first-name" id="first-name-field">
@@ -30,9 +30,11 @@
 				</div>
 				<div class="form__wrapper">
 					<label class="form__text-label" for="nationality-field">Nationality</label>
-					<select name="nationality" id="nationality-field">
-						<option>American</option>
-					</select>
+					<div class="form__select-wrapper">
+						<select class="form__select" name="nationality" id="nationality-field">
+							<option class="form__option">American</option>
+						</select>
+					</div>
 				</div>
 				<div class="form__wrapper">
 					<label class="form__text-label" for="email-field">E-mail</label>
@@ -40,22 +42,34 @@
 				</div>
 				<fieldset class="form__fieldset">
 					<legend class="form__legend">Date of Birth</legend>
-					<select name="date-of-birth" id="date-field">
-						<option>21</option>
-					</select>
-					<select name="month-of-birth" id="month-field">
-						<option>December</option>
-					</select>
-					<select name="year-of-birth" id="year-field">
-						<option>1995</option>
-					</select>
+					<div class="form__wrapper-day-of-birth">
+						<div class="form__select-wrapper form__select-wrapper--day-of-birth">
+							<select class="form__select form__select--date" name="date-of-birth" id="date-field">
+								<option>21</option>
+							</select>
+						</div>
+						<div class="form__select-wrapper form__select-wrapper--day-of-birth">
+							<select class="form__select form__select--month" name="month-of-birth" id="month-field">
+								<option>December</option>
+							</select>
+						</div>
+						<div class="form__select-wrapper form__select-wrapper--day-of-birth">
+							<select class="form__select form__select--year" name="year-of-birth" id="year-field">
+								<option>1995</option>
+							</select>
+						</div>
+					</div>
 				</fieldset>
 				<fieldset class="form__fieldset">
 					<legend class="form__legend">Gender</legend>
-					<input class="form__radio-field" type="radio" name="gender" id="male-field" value="male">
-					<label class="form__radio-label" for="male-field">Male</label>
-					<input class="form__radio-field" type="radio" name="gender" id="female-field" value="female" checked>
-					<label class="form__radio-label" for="female-field">Male</label>
+					<input class="form__radio-field visually-hidden" type="radio" name="gender" id="male-field" value="male">
+					<label class="form__radio-label" for="male-field">
+						<span class="form__radio-text">Male</span>
+					</label>
+					<input class="form__radio-field visually-hidden" type="radio" name="gender" id="female-field" value="female" checked>
+					<label class="form__radio-label" for="female-field">
+						<span class="form__radio-text">Female</span>
+					</label>
 				</fieldset>
 				<div class="form__wrapper">
 					<label class="form__text-label" for="password-field">Password</label>
