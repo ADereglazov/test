@@ -6,8 +6,8 @@
 	position: relative;
 
 	display: block;
-	width: 138px;
-	height: 480px;
+	width: 45px;
+	flex-shrink: 0;
 
 	background-color: @blue-dark;
 }
@@ -15,18 +15,30 @@
 .page-main__title {
 	position: absolute;
 	bottom: 22px;
-	right: 5px;
 
 	padding: 0;
 	margin: 0;
 
 	font-family: @font-pt;
-	font-size: 49px;
-	line-height: 63px;
+	font-size: 30px;
+	line-height: 45px;
 	font-weight: normal;
 	letter-spacing: 0.5px;
 	color: @white;
 
 	writing-mode: vertical-lr;
 	transform: rotate(180deg);
+}
+
+@media (min-width: @desktop-width) {
+	.page-main__wrapper {
+		width: 138px;
+	}
+
+	.page-main__title {
+		right: 5px;
+
+		font-size: 49px;
+		line-height: 63px;
+	}
 }

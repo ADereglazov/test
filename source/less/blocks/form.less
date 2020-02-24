@@ -1,6 +1,6 @@
 .form {
 	width: 100%;
-	padding: 40px 22px;
+	padding: 20px 10px;
 
 	background-color: @white;
 }
@@ -185,14 +185,14 @@
 }
 
 .form__login-block {
-	margin-top: 87px;
+	margin-top: 47px;
 }
 
 .form__button {
 	display: block;
 	width: 154px;
 	height: 32px;
-	margin-top: 80px;
+	margin-top: 40px;
 
 	font-family: @font-pt;
 	font-size: 14px;
@@ -204,5 +204,21 @@
 
 	&:hover {
 		cursor: pointer;
+	}
+}
+
+@media (min-width: @desktop-width) {
+	.form {
+		padding: 40px 22px;
+	}
+
+	.form__login-block {
+		margin-top: 87px;
+	}
+
+	.form__button {
+		order: 1;
+
+		margin-top: 80px;
 	}
 }
