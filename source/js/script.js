@@ -27,17 +27,11 @@ submitButton.addEventListener('click', function (evt) {
 	submitButton.classList.remove('form__animation');
 
 	if (!isValidEmail(emailField, errorTextEmail)) {
-		evt.preventDefault();
-		submitButton.classList.remove('form__button--error');
-		submitButton.offsetWidth = submitButton.offsetWidth;
-		submitButton.classList.add('form__button--error');
+		modSubmitButton(evt);
 		emailField.focus();
 
 	} else if (!isValidPassword(passwordField, errorTextPassword)) {
-		evt.preventDefault();
-		submitButton.classList.remove('form__button--error');
-		submitButton.offsetWidth = submitButton.offsetWidth;
-		submitButton.classList.add('form__button--error');
+		modSubmitButton(evt);
 		passwordField.focus();
 
 	}
@@ -45,6 +39,13 @@ submitButton.addEventListener('click', function (evt) {
 		submitButton.classList.remove('form__button--error');
 	}
 });
+
+function modSubmitButton(evt) {
+	evt.preventDefault();
+	submitButton.classList.remove('form__button--error');
+	submitButton.offsetWidth = submitButton.offsetWidth;
+	submitButton.classList.add('form__button--error');
+}
 
 function isValidEmail(email, errorTextEmail) {
 	let regularString = /^[\w-.]+@[\w-]+\.[a-z]{2,4}$/i;
