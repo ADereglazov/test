@@ -36,7 +36,8 @@ confirmPasswordField.onblur = function () {
 		errorTextConfirmPassword.classList.add('form__error-password-ok');
 	} else {
 		confirmPasswordField.classList.add('form__text-field--error');
-		errorMessage = 'Пароли не совпадают!';
+		errorTextConfirmPassword.classList.remove('form__error-password-ok');
+		errorMessage = 'Passwords don`t match!';
 	}
 
 	errorTextConfirmPassword.innerHTML = errorMessage;
@@ -85,7 +86,7 @@ function isValidEmail(email, errorTextEmail) {
 	if (isValid) {
 		emailField.classList.remove('form__text-field--error');
 	} else {
-		errorMessage = email.value ? 'Адрес введен неправильно!' : 'Введите адрес';
+		errorMessage = email.value ? 'Address is incorrect!' : 'Enter the address!';
 	}
 
 	errorTextEmail.innerHTML = errorMessage;
@@ -103,8 +104,8 @@ function isValidPassword(password, errorTextPassword) {
 	if (isValid) {
 		passwordField.classList.remove('form__text-field--error');
 	} else {
-		errorMessage = isValid ? '' : 'Пароль введен неверно! Он должен содержать от 8 символов, ' +
-			'заглавные и строчные буквы, а также цифры.';
+		errorMessage = isValid ? '' : 'The password was entered incorrectly! It must contain ' +
+			                            'at least 8 characters, uppercase and lowercase letters, and numbers.';
 	}
 
 	errorTextPassword.innerHTML = errorMessage;
