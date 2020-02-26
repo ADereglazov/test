@@ -1,10 +1,12 @@
 .form {
 	position: relative;
+
 	width: 100%;
 	padding: 20px 10px;
 
-	background-size: 307px 355px;
-	background: url("../img/noun_925550.svg") no-repeat right bottom @white;
+	background-color: @white;
+
+	overflow: hidden;
 }
 
 .form__title {
@@ -109,7 +111,8 @@
 	color: @red;
 }
 
-.form__error-password {
+.form__error-password,
+.form__error-confirm-password {
 	margin-top: 5px;
 
 	font-size: 12px;
@@ -328,7 +331,7 @@
 	width: 307px;
 	height: 355px;
 
-	fill: none;
+	fill: #f9faff;
 	stroke: @gray-dark;
 	stroke-dasharray: 3812;
 	stroke-dashoffset: 3812;
