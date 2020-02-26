@@ -37,7 +37,7 @@
 					</div>
 				</div>
 				<div class="form__wrapper form__animation">
-					<label class="form__text-label" for="email-field">E-mail<span class="form__error-text"></span></label>
+					<label class="form__text-label" for="email-field">E-mail<span class="form__error-email"></span></label>
 					<input class="form__text-field form__text-field--email" type="email" name="email" id="email-field" pattern="/^[\w]{1}[\w-\.]*@[\w-]+\.[a-z]{2,4}$/i" required>
 				</div>
 				<fieldset class="form__fieldset form__animation">
@@ -73,7 +73,8 @@
 				</fieldset>
 				<div class="form__wrapper form__animation">
 					<label class="form__text-label" for="password-field">Password</label>
-					<input class="form__text-field" type="password" name="password" id="password-field" minlength="8">
+					<input class="form__text-field form__text-field--password" type="password" name="password" id="password-field" minlength="8">
+					<span class="form__error-password"></span>
 				</div>
 				<div class="form__wrapper form__animation">
 					<label class="form__text-label" for="confirm-password-field">Confirm Password</label>

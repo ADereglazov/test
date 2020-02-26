@@ -1,47 +1,84 @@
 let submitButton = document.querySelector('.form__button');
 let emailField = document.querySelector('.form__text-field--email');
-let errorText = document.querySelector('.form__error-text');
+let passwordField = document.querySelector('.form__text-field--password');
+let errorTextEmail = document.querySelector('.form__error-email');
+let errorTextPassword = document.querySelector('.form__error-password');
 
 emailField.onblur = function () {
-	validEmail(emailField, errorText)
+	isValidEmail(emailField, errorTextEmail)
 };
 
 emailField.addEventListener('input', function () {
 	emailField.classList.remove('form__text-field--error');
-	errorText.innerHTML = '';
+	errorTextEmail.innerHTML = '';
+});
+
+passwordField.onblur = function () {
+	isValidPassword(passwordField, errorTextPassword)
+};
+
+passwordField.addEventListener('input', function () {
+	passwordField.classList.remove('form__text-field--error');
+	errorTextPassword.innerHTML = '';
 });
 
 submitButton.addEventListener('click', function (evt) {
 
-	if (!validEmail(emailField, errorText)) {
-		evt.preventDefault();
+	submitButton.classList.remove('form__animation');
 
-		submitButton.classList.remove('form__animation');
+	if (!isValidEmail(emailField, errorTextEmail)) {
+		evt.preventDefault();
 		submitButton.classList.remove('form__button--error');
 		submitButton.offsetWidth = submitButton.offsetWidth;
 		submitButton.classList.add('form__button--error');
 		emailField.focus();
-	} else {
+
+	} else if (!isValidPassword(passwordField, errorTextPassword)) {
+		evt.preventDefault();
+		submitButton.classList.remove('form__button--error');
+		submitButton.offsetWidth = submitButton.offsetWidth;
+		submitButton.classList.add('form__button--error');
+		passwordField.focus();
+
+	}
+	else {
 		submitButton.classList.remove('form__button--error');
 	}
 });
 
-function validEmail(email, errorText) {
+function isValidEmail(email, errorTextEmail) {
 	let regularString = /^[\w-.]+@[\w-]+\.[a-z]{2,4}$/i;
 	let isValid = regularString.test(email.value);
 	let errorMessage = '';
 
 	emailField.classList.add('form__text-field--error');
 
-	if (!email.value) {
-		errorMessage = 'Введите адрес';
-	} else if (!isValid) {
-		errorMessage = 'Адрес введен неправильно!';
-	} else {
+	if (isValid) {
 		emailField.classList.remove('form__text-field--error');
+	} else {
+		errorMessage = email.value ? 'Адрес введен неправильно!' : 'Введите адрес';
 	}
 
-	errorText.innerHTML = errorMessage;
+	errorTextEmail.innerHTML = errorMessage;
 
-	return errorMessage === '';
+	return isValid;
+}
+
+function isValidPassword(password, errorTextPassword) {
+	let regularString = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+	let isValid = regularString.test(password.value);
+	let errorMessage = '';
+
+	passwordField.classList.add('form__text-field--error');
+
+	if (isValid) {
+		passwordField.classList.remove('form__text-field--error');
+	} else {
+		errorMessage = isValid ? '' : 'Пароль введен неверно! Он должен содержать от 8 символов, ' +
+			'заглавные и строчные буквы, а также цифры.';
+	}
+
+	errorTextPassword.innerHTML = errorMessage;
+
+	return isValid;
 }
