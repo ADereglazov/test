@@ -7,19 +7,25 @@ let confirmPasswordField = document.querySelector('.form__text-field--confirm-pa
 let errorTextConfirmPassword = document.querySelector('.form__error-confirm-password');
 
 emailField.onblur = function () {
-	isValidEmail(emailField, errorTextEmail);
+	if (isValidEmail(emailField, errorTextEmail)) {
+		errorTextEmail.classList.add('form__error-email-ok');
+	}
 };
 
 emailField.addEventListener('input', function () {
 	removeErrorState(emailField, errorTextEmail);
+	errorTextEmail.classList.remove('form__error-email-ok');
 });
 
 passwordField.onblur = function () {
-	isValidPassword(passwordField, errorTextPassword);
+	if (isValidPassword(passwordField, errorTextPassword)) {
+		errorTextPassword.classList.add('form__error-password-ok');
+	}
 };
 
 passwordField.addEventListener('input', function () {
 	removeErrorState(passwordField, errorTextPassword);
+	errorTextPassword.classList.remove('form__error-password-ok');
 });
 
 confirmPasswordField.onblur = function () {
@@ -27,6 +33,7 @@ confirmPasswordField.onblur = function () {
 
 	if (passwordField.value === confirmPasswordField.value) {
 		confirmPasswordField.classList.remove('form__text-field--error');
+		errorTextConfirmPassword.classList.add('form__error-password-ok');
 	} else {
 		confirmPasswordField.classList.add('form__text-field--error');
 		errorMessage = 'Пароли не совпадают!';
@@ -37,6 +44,7 @@ confirmPasswordField.onblur = function () {
 
 confirmPasswordField.addEventListener('input', function () {
 	removeErrorState(confirmPasswordField, errorTextConfirmPassword);
+	errorTextConfirmPassword.classList.remove('form__error-password-ok');
 });
 
 submitButton.addEventListener('click', function (evt) {

@@ -134,6 +134,74 @@
 	}
 }
 
+.form__error-email-ok {
+	position: relative;
+
+	&::before {
+		content: "";
+		position: absolute;
+		top: 27px;
+		right: 10px;
+
+		display: block;
+		width: 5px;
+		height: 1px;
+
+		background-color: @blue-dark;
+
+		transform: rotate(45deg);
+	}
+
+	&::after {
+		content: "";
+		position: absolute;
+		top: 25px;
+		right: 2px;
+
+		display: block;
+		width: 10px;
+		height: 1px;
+
+		background-color: @blue-dark;
+
+		transform: rotate(-45deg);
+	}
+}
+
+.form__error-password-ok {
+	position: relative;
+
+	&::before {
+		content: "";
+		position: absolute;
+		top: -15px;
+		right: 10px;
+
+		display: block;
+		width: 5px;
+		height: 1px;
+
+		background-color: @blue-dark;
+
+		transform: rotate(45deg);
+	}
+
+	&::after {
+		content: "";
+		position: absolute;
+		top: -16px;
+		right: 3px;
+
+		display: block;
+		width: 10px;
+		height: 1px;
+
+		background-color: @blue-dark;
+
+		transform: rotate(-45deg);
+	}
+}
+
 .form__fieldset {
 	width: 235px;
 	padding: 0;
@@ -245,6 +313,12 @@
 .form__radio-field:checked:not(:disabled) + .form__radio-label {
 	&::before {
 		background-color: @blue-dark;
+	}
+}
+
+.form__radio-field:checked:not(:disabled):focus + .form__radio-label {
+	&::before {
+		box-shadow: 0 0 3px 2px @blue-dark;
 	}
 }
 
