@@ -7,7 +7,7 @@ let confirmPasswordField = document.querySelector('.form__text-field--confirm-pa
 let errorTextConfirmPassword = document.querySelector('.form__error-confirm-password');
 
 emailField.onblur = function () {
-	if (isValidEmail(emailField, errorTextEmail)) {
+	if (isValidEmail()) {
 		errorTextEmail.classList.add('form__error-email-ok');
 	}
 };
@@ -18,7 +18,7 @@ emailField.addEventListener('input', function () {
 });
 //------------------------------------------------------------------
 passwordField.onblur = function () {
-	if (isValidPassword(passwordField, errorTextPassword)) {
+	if (isValidPassword()) {
 		errorTextPassword.classList.add('form__error-password-ok');
 	}
 };
@@ -38,28 +38,31 @@ confirmPasswordField.addEventListener('input', function () {
 });
 //------------------------------------------------------------------
 submitButton.addEventListener('click', function (evt) {
-
+	evt.preventDefault();
 	submitButton.classList.remove('form__animation');
 
-	if (!isValidEmail(emailField, errorTextEmail)) {
-		modSubmitButton(evt);
+	if (!isValidEmail()) {
+		modSubmitButton();
 		emailField.focus();
+		return;
 	}
-	else if (!isValidPassword(passwordField, errorTextPassword)) {
-		modSubmitButton(evt);
+
+	if (!isValidPassword()) {
+		modSubmitButton();
 		passwordField.focus();
+		return;
 	}
-	else if (!isValidConfirmPassword()) {
-		modSubmitButton(evt);
+
+	if (!isValidConfirmPassword()) {
+		modSubmitButton();
 		confirmPasswordField.focus();
+		return;
 	}
-	else {
-		submitButton.classList.remove('form__button--error');
-	}
+
+	submitButton.classList.remove('form__button--error');
 });
 //------------------------------------------------------------------
-function modSubmitButton(evt) {
-	evt.preventDefault();
+function modSubmitButton() {
 	submitButton.classList.remove('form__button--error');
 	submitButton.offsetWidth = submitButton.offsetWidth;
 	submitButton.classList.add('form__button--error');
@@ -70,9 +73,9 @@ function removeErrorState(inputField, errorTextElement) {
 	errorTextElement.innerHTML = '';
 }
 //------------------------------------------------------------------
-function isValidEmail(email, errorTextField) {
+function isValidEmail() {
 	let regularString = /^[\w-.]+@[\w-]+\.[a-z]{2,4}$/;
-	let isValid = regularString.test(email.value);
+	let isValid = regularString.test(emailField.value);
 	let errorMessage = '';
 
 	emailField.classList.add('form__text-field--error');
@@ -80,16 +83,16 @@ function isValidEmail(email, errorTextField) {
 	if (isValid) {
 		emailField.classList.remove('form__text-field--error');
 	} else {
-		errorMessage = email.value ? 'Address is incorrect!' : 'Enter the address!';
+		errorMessage = emailField.value ? 'Address is incorrect!' : 'Enter the address!';
 	}
 
-	errorTextField.innerHTML = errorMessage;
+	errorTextEmail.innerHTML = errorMessage;
 	return isValid;
 }
 //------------------------------------------------------------------
-function isValidPassword(password, errorTextField) {
+function isValidPassword() {
 	let regularString = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
-	let isValid = regularString.test(password.value);
+	let isValid = regularString.test(passwordField.value);
 	let errorMessage = '';
 
 	passwordField.classList.add('form__text-field--error');
@@ -97,11 +100,11 @@ function isValidPassword(password, errorTextField) {
 	if (isValid) {
 		passwordField.classList.remove('form__text-field--error');
 	} else {
-		errorMessage = isValid ? '' : 'The password was entered incorrectly! It must contain ' +
-			                            'at least 8 characters, uppercase and lowercase letters, and numbers.';
+		errorMessage = 'The password was entered incorrectly! It must contain ' +
+			             'at least 8 characters, uppercase and lowercase letters, and numbers.';
 	}
 
-	errorTextField.innerHTML = errorMessage;
+	errorTextPassword.innerHTML = errorMessage;
 	return isValid;
 }
 //------------------------------------------------------------------
