@@ -16,7 +16,7 @@ emailField.addEventListener('input', function () {
 	removeErrorState(emailField, errorTextEmail);
 	errorTextEmail.classList.remove('form__error-email-ok');
 });
-
+//------------------------------------------------------------------
 passwordField.onblur = function () {
 	if (isValidPassword(passwordField, errorTextPassword)) {
 		errorTextPassword.classList.add('form__error-password-ok');
@@ -27,27 +27,16 @@ passwordField.addEventListener('input', function () {
 	removeErrorState(passwordField, errorTextPassword);
 	errorTextPassword.classList.remove('form__error-password-ok');
 });
-
+//------------------------------------------------------------------
 confirmPasswordField.onblur = function () {
-	let errorMessage = '';
-
-	if (passwordField.value === confirmPasswordField.value) {
-		confirmPasswordField.classList.remove('form__text-field--error');
-		errorTextConfirmPassword.classList.add('form__error-password-ok');
-	} else {
-		confirmPasswordField.classList.add('form__text-field--error');
-		errorTextConfirmPassword.classList.remove('form__error-password-ok');
-		errorMessage = 'Passwords don`t match!';
-	}
-
-	errorTextConfirmPassword.innerHTML = errorMessage;
+	isValidConfirmPassword();
 };
 
 confirmPasswordField.addEventListener('input', function () {
 	removeErrorState(confirmPasswordField, errorTextConfirmPassword);
 	errorTextConfirmPassword.classList.remove('form__error-password-ok');
 });
-
+//------------------------------------------------------------------
 submitButton.addEventListener('click', function (evt) {
 
 	submitButton.classList.remove('form__animation');
@@ -55,15 +44,20 @@ submitButton.addEventListener('click', function (evt) {
 	if (!isValidEmail(emailField, errorTextEmail)) {
 		modSubmitButton(evt);
 		emailField.focus();
-	} else if (!isValidPassword(passwordField, errorTextPassword)) {
+	}
+	else if (!isValidPassword(passwordField, errorTextPassword)) {
 		modSubmitButton(evt);
 		passwordField.focus();
+	}
+	else if (!isValidConfirmPassword()) {
+		modSubmitButton(evt);
+		confirmPasswordField.focus();
 	}
 	else {
 		submitButton.classList.remove('form__button--error');
 	}
 });
-
+//------------------------------------------------------------------
 function modSubmitButton(evt) {
 	evt.preventDefault();
 	submitButton.classList.remove('form__button--error');
@@ -75,8 +69,8 @@ function removeErrorState(inputField, errorTextElement) {
 	inputField.classList.remove('form__text-field--error');
 	errorTextElement.innerHTML = '';
 }
-
-function isValidEmail(email, errorTextEmail) {
+//------------------------------------------------------------------
+function isValidEmail(email, errorTextField) {
 	let regularString = /^[\w-.]+@[\w-]+\.[a-z]{2,4}$/;
 	let isValid = regularString.test(email.value);
 	let errorMessage = '';
@@ -89,12 +83,11 @@ function isValidEmail(email, errorTextEmail) {
 		errorMessage = email.value ? 'Address is incorrect!' : 'Enter the address!';
 	}
 
-	errorTextEmail.innerHTML = errorMessage;
-
+	errorTextField.innerHTML = errorMessage;
 	return isValid;
 }
-
-function isValidPassword(password, errorTextPassword) {
+//------------------------------------------------------------------
+function isValidPassword(password, errorTextField) {
 	let regularString = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
 	let isValid = regularString.test(password.value);
 	let errorMessage = '';
@@ -108,7 +101,24 @@ function isValidPassword(password, errorTextPassword) {
 			                            'at least 8 characters, uppercase and lowercase letters, and numbers.';
 	}
 
-	errorTextPassword.innerHTML = errorMessage;
+	errorTextField.innerHTML = errorMessage;
+	return isValid;
+}
+//------------------------------------------------------------------
+function isValidConfirmPassword() {
+	let isValid = false;
+	let errorMessage = '';
 
+	if (passwordField.value === confirmPasswordField.value && confirmPasswordField.value) {
+		confirmPasswordField.classList.remove('form__text-field--error');
+		errorTextConfirmPassword.classList.add('form__error-password-ok');
+		isValid = true;
+	} else if (passwordField.value) {
+		confirmPasswordField.classList.add('form__text-field--error');
+		errorTextConfirmPassword.classList.remove('form__error-password-ok');
+		errorMessage = 'Passwords don`t match!';
+	}
+
+	errorTextConfirmPassword.innerHTML = errorMessage;
 	return isValid;
 }
