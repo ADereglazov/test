@@ -40,7 +40,7 @@
 }
 
 .form__animation {
-	opacity:0;
+	opacity: 0;
 	transition: 1s;
 	animation: show 1s 1;
 	animation-fill-mode: forwards;
@@ -71,6 +71,7 @@
 
 	&:nth-child(7) {
 		animation-delay: 1400ms;
+		margin-bottom: 65px;
 	}
 
 	&:nth-child(8) {
@@ -97,6 +98,8 @@
 
 .form__legend,
 .form__text-label {
+	position: relative;
+
 	display: flex;
 	justify-content: space-between;
 	margin-bottom: 5px;
@@ -107,13 +110,14 @@
 	color: @gray-dark;
 }
 
-.form__error-email {
+.form__message-email {
 	color: @red;
 }
 
-.form__error-password,
-.form__error-confirm-password {
-	margin-top: 5px;
+.form__message-password,
+.form__message-confirm-password {
+	position: absolute;
+	top: 42px;
 
 	font-size: 12px;
 	line-height: 14px;
@@ -134,8 +138,7 @@
 	}
 }
 
-.form__error-email-ok {
-	position: relative;
+.form__message-email-ok {
 
 	&::before {
 		content: "";
@@ -168,14 +171,13 @@
 	}
 }
 
-.form__error-password-ok {
-	position: relative;
+.form__message-password-ok {
 
 	&::before {
 		content: "";
 		position: absolute;
 		top: -15px;
-		right: 10px;
+		left: 222px;
 
 		display: block;
 		width: 5px;
@@ -190,7 +192,7 @@
 		content: "";
 		position: absolute;
 		top: -16px;
-		right: 3px;
+		left: 225px;
 
 		display: block;
 		width: 10px;
@@ -442,6 +444,10 @@
 @media (min-width: @desktop-width) {
 	.form {
 		padding: 20px 24px 33px 20px;
+	}
+
+	.form__animation:nth-child(7) {
+		margin-bottom: 20px;
 	}
 
 	.form__login-block {
