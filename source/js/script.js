@@ -33,9 +33,7 @@ submitButton.addEventListener('click', function (evt) {
 });
 //------------------------------------------------------------------
 emailField.addEventListener('focusout', function () {
-	if (isValidEmail()) {
-		formMessage[0].classList.add('form__message-ok');
-	}
+	formMessage[0].classList.toggle('form__message-ok', isValidEmail());
 });
 
 emailField.addEventListener('input', function () {
@@ -44,9 +42,7 @@ emailField.addEventListener('input', function () {
 });
 //------------------------------------------------------------------
 passwordField.addEventListener('focusout', function () {
-	if (isValidPassword()) {
-		formMessage[1].classList.add('form__message-ok');
-	}
+	formMessage[1].classList.toggle('form__message-ok', isValidPassword());
 });
 
 passwordField.addEventListener('input', function () {
@@ -79,11 +75,9 @@ function isValidEmail() {
 	let isValid = regularString.test(emailField.value);
 	let errorMessage = '';
 
-	emailField.classList.add('form__text-field--error');
+	emailField.classList.toggle('form__text-field--error', !isValid);
 
-	if (isValid) {
-		emailField.classList.remove('form__text-field--error');
-	} else {
+	if (!isValid) {
 		errorMessage = emailField.value ? 'Address is incorrect!' : 'Enter the address!';
 	}
 
@@ -94,16 +88,12 @@ function isValidEmail() {
 function isValidPassword() {
 	let regularString = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
 	let isValid = regularString.test(passwordField.value);
-	let errorMessage = '';
+	let errorMessage;
 
-	passwordField.classList.add('form__text-field--error');
+	passwordField.classList.toggle('form__text-field--error', !isValid);
 
-	if (isValid) {
-		passwordField.classList.remove('form__text-field--error');
-	} else {
-		errorMessage = 'The password was entered incorrectly! It must contain ' +
-			             'at least 8 characters, uppercase and lowercase letters, and numbers.';
-	}
+	errorMessage = isValid ? '' : 'The password was entered incorrectly! It must contain ' +
+			                          'at least 8 characters, uppercase and lowercase letters, and numbers.';
 
 	formMessage[1].innerText = errorMessage;
 	return isValid;
