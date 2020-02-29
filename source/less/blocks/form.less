@@ -31,6 +31,8 @@
 }
 
 .form__wrapper {
+	position: relative;
+
 	display: flex;
 	flex-direction: column;
 	width: 235px;
@@ -98,8 +100,6 @@
 
 .form__legend,
 .form__text-label {
-	position: relative;
-
 	width: 235px;
 	margin-bottom: 5px;
 
@@ -113,12 +113,7 @@
 	text-overflow: ellipsis;
 }
 
-.form__message-email {
-	color: @red;
-}
-
-.form__message-password,
-.form__message-confirm-password {
+.form__message {
 	position: absolute;
 	top: 42px;
 
@@ -141,40 +136,7 @@
 	}
 }
 
-.form__message-email-ok {
-
-	&::before {
-		content: "";
-		position: absolute;
-		top: 27px;
-		right: 6px;
-
-		display: block;
-		width: 5px;
-		height: 1px;
-
-		background-color: @blue-dark;
-
-		transform: rotate(45deg);
-	}
-
-	&::after {
-		content: "";
-		position: absolute;
-		top: 25px;
-		right: -2px;
-
-		display: block;
-		width: 10px;
-		height: 1px;
-
-		background-color: @blue-dark;
-
-		transform: rotate(-45deg);
-	}
-}
-
-.form__message-password-ok {
+.form__message-ok {
 
 	&::before {
 		content: "";
@@ -445,7 +407,7 @@
 	}
 }
 
-@media (min-width: @desktop-width) {
+@media (min-width: @tablet-width) {
 	.form {
 		padding: 20px 24px 33px 20px;
 	}
@@ -464,3 +426,4 @@
 		margin-top: 80px;
 	}
 }
+

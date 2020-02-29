@@ -1,10 +1,8 @@
 const submitButton = document.querySelector('.form__button');
 const emailField = document.querySelector('.form__text-field--email');
-const errorTextEmail = document.querySelector('.form__message-email');
 const passwordField = document.querySelector('.form__text-field--password');
-const errorTextPassword = document.querySelector('.form__message-password');
 const confirmPasswordField = document.querySelector('.form__text-field--confirm-password');
-const errorTextConfirmPassword = document.querySelector('.form__message-confirm-password');
+const formMessage = document.querySelectorAll('.form__message');
 const modalWindow = document.querySelector('.modal');
 
 //------------------------------------------------------------------
@@ -36,24 +34,24 @@ submitButton.addEventListener('click', function (evt) {
 //------------------------------------------------------------------
 emailField.addEventListener('focusout', function () {
 	if (isValidEmail()) {
-		errorTextEmail.classList.add('form__message-email-ok');
+		formMessage[0].classList.add('form__message-ok');
 	}
 });
 
 emailField.addEventListener('input', function () {
-	removeErrorState(emailField, errorTextEmail);
-	errorTextEmail.classList.remove('form__message-email-ok');
+	removeErrorState(emailField, formMessage[0]);
+	formMessage[0].classList.remove('form__message-ok');
 });
 //------------------------------------------------------------------
 passwordField.addEventListener('focusout', function () {
 	if (isValidPassword()) {
-		errorTextPassword.classList.add('form__message-password-ok');
+		formMessage[1].classList.add('form__message-ok');
 	}
 });
 
 passwordField.addEventListener('input', function () {
-	removeErrorState(passwordField, errorTextPassword);
-	errorTextPassword.classList.remove('form__message-password-ok');
+	removeErrorState(passwordField, formMessage[1]);
+	formMessage[1].classList.remove('form__message-ok');
 });
 //------------------------------------------------------------------
 confirmPasswordField.addEventListener('focusout', function () {
@@ -61,8 +59,8 @@ confirmPasswordField.addEventListener('focusout', function () {
 });
 
 confirmPasswordField.addEventListener('input', function () {
-	removeErrorState(confirmPasswordField, errorTextConfirmPassword);
-	errorTextConfirmPassword.classList.remove('form__message-password-ok');
+	removeErrorState(confirmPasswordField, formMessage[2]);
+	formMessage[2].classList.remove('form__message-ok');
 });
 //------------------------------------------------------------------
 function modSubmitButton() {
@@ -89,7 +87,7 @@ function isValidEmail() {
 		errorMessage = emailField.value ? 'Address is incorrect!' : 'Enter the address!';
 	}
 
-	errorTextEmail.innerText = errorMessage;
+	formMessage[0].innerText = errorMessage;
 	return isValid;
 }
 //------------------------------------------------------------------
@@ -107,7 +105,7 @@ function isValidPassword() {
 			             'at least 8 characters, uppercase and lowercase letters, and numbers.';
 	}
 
-	errorTextPassword.innerText = errorMessage;
+	formMessage[1].innerText = errorMessage;
 	return isValid;
 }
 //------------------------------------------------------------------
@@ -117,15 +115,15 @@ function isValidConfirmPassword() {
 
 	if (passwordField.value === confirmPasswordField.value && confirmPasswordField.value) {
 		confirmPasswordField.classList.remove('form__text-field--error');
-		errorTextConfirmPassword.classList.add('form__message-password-ok');
+		formMessage[2].classList.add('form__message-ok');
 		isValid = true;
 	} else if (passwordField.value) {
 		confirmPasswordField.classList.add('form__text-field--error');
-		errorTextConfirmPassword.classList.remove('form__message-password-ok');
+		formMessage[2].classList.remove('form__message-ok');
 		errorMessage = 'Passwords don`t match!';
 	}
 
-	errorTextConfirmPassword.innerText = errorMessage;
+	formMessage[2].innerText = errorMessage;
 	return isValid;
 }
 //------------------------------------------------------------------
