@@ -100,14 +100,17 @@
 .form__text-label {
 	position: relative;
 
-	display: flex;
-	justify-content: space-between;
+	width: 235px;
 	margin-bottom: 5px;
 
 	font-weight: 300;
 	font-size: 12px;
 	line-height: 14px;
 	color: @gray-dark;
+
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 }
 
 .form__message-email {
