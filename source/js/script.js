@@ -5,6 +5,7 @@ const passwordField = document.querySelector('.form__text-field--password');
 const errorTextPassword = document.querySelector('.form__message-password');
 const confirmPasswordField = document.querySelector('.form__text-field--confirm-password');
 const errorTextConfirmPassword = document.querySelector('.form__message-confirm-password');
+const modalWindow = document.querySelector('.modal');
 
 //------------------------------------------------------------------
 submitButton.addEventListener('click', function (evt) {
@@ -30,6 +31,7 @@ submitButton.addEventListener('click', function (evt) {
 	}
 
 	submitButton.classList.remove('form__button--error');
+	modalWindow.classList.remove('modal--hide');
 });
 //------------------------------------------------------------------
 emailField.addEventListener('focusout', function () {
@@ -126,3 +128,16 @@ function isValidConfirmPassword() {
 	errorTextConfirmPassword.innerText = errorMessage;
 	return isValid;
 }
+//------------------------------------------------------------------
+modalWindow.addEventListener('click', function () {
+	modalWindow.classList.add('modal--hide');
+});
+
+window.addEventListener('keydown', function (evt) {
+	if (evt.keyCode === 27) {
+		if (!modalWindow.classList.contains('modal--hide')) {
+			evt.preventDefault();
+			modalWindow.classList.add('modal--hide');
+		}
+	}
+});
