@@ -1,10 +1,32 @@
-const submitButton = document.querySelector('.form__button');
-const emailField = document.querySelector('.form__text-field--email');
-const passwordField = document.querySelector('.form__text-field--password');
-const confirmPasswordField = document.querySelector('.form__text-field--confirm-password');
-const formMessage = document.querySelectorAll('.form__message');
+const form = document.forms.namedItem('new-user-form');
+const submitButton = form.querySelector('.form__button');
+const emailField = form.querySelector('.form__text-field--email');
+const passwordField = form.querySelector('.form__text-field--password');
+const confirmPasswordField = form.querySelector('.form__text-field--confirm-password');
+const formMessage = form.querySelectorAll('.form__message');
 const modalWindow = document.querySelector('.modal');
 
+//------------------------------------------------------------------
+function postData() {
+	const formData = new FormData(form);
+	const oReq = new XMLHttpRequest();
+
+	oReq.open('POST', 'https://echo.htmlacademy.ru', true);
+	oReq.send(formData);
+
+	oReq.onload = function() {
+		if (oReq.status === 200) {
+			modalWindow.classList.remove('modal--hide');
+			form.reset();
+			for (let i = 0; i < formMessage.length; i++) {
+				formMessage[i].classList.remove('form__message-ok');
+			}
+			//Qw111111
+		} else {
+			alert('Error ' + oReq.status + ' occurred when trying to upload your data.');
+		}
+	};
+}
 //------------------------------------------------------------------
 submitButton.addEventListener('click', function (evt) {
 	evt.preventDefault();
@@ -29,7 +51,7 @@ submitButton.addEventListener('click', function (evt) {
 	}
 
 	submitButton.classList.remove('form__button--error');
-	modalWindow.classList.remove('modal--hide');
+	postData();
 });
 //------------------------------------------------------------------
 emailField.addEventListener('focusout', function () {
