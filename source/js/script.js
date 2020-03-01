@@ -7,27 +7,6 @@ const formMessage = form.querySelectorAll('.form__message');
 const modalWindow = document.querySelector('.modal');
 
 //------------------------------------------------------------------
-function postData() {
-	const formData = new FormData(form);
-	const oReq = new XMLHttpRequest();
-
-	oReq.open('POST', 'https://echo.htmlacademy.ru', true);
-	oReq.send(formData);
-
-	oReq.onload = function() {
-		if (oReq.status === 200) {
-			modalWindow.classList.remove('modal--hide');
-			form.reset();
-			for (let i = 0; i < formMessage.length; i++) {
-				formMessage[i].classList.remove('form__message-ok');
-			}
-			//Qw111111
-		} else {
-			alert('Error ' + oReq.status + ' occurred when trying to upload your data.');
-		}
-	};
-}
-//------------------------------------------------------------------
 submitButton.addEventListener('click', function (evt) {
 	evt.preventDefault();
 	submitButton.classList.remove('form__animation');
@@ -151,3 +130,23 @@ window.addEventListener('keydown', function (evt) {
 		}
 	}
 });
+//------------------------------------------------------------------
+function postData() {
+	const formData = new FormData(form);
+	const oReq = new XMLHttpRequest();
+
+	oReq.open('POST', 'https://echo.htmlacademy.ru', true);
+	oReq.send(formData);
+
+	oReq.onload = function() {
+		if (oReq.status === 200) {
+			modalWindow.classList.remove('modal--hide');
+			form.reset();
+			for (let i = 0; i < formMessage.length; i++) {
+				formMessage[i].classList.remove('form__message-ok');
+			}
+		} else {
+			alert('Error ' + oReq.status + ' occurred when trying to upload your data.');
+		}
+	};
+}
