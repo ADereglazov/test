@@ -381,9 +381,7 @@ img {
     padding-left: 67px;
   }
 }
-.visually-hidden:not(:focus):not(:active),
-input[type="radio"].visually-hidden,
-input[type="checkbox"].visually-hidden {
+.visually-hidden {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -581,6 +579,10 @@ input[type="checkbox"].visually-hidden {
 .form__text-field--error {
   color: #ff2222;
   border-color: #ff2222;
+}
+.form__text-field::-ms-clear {
+  width: 0;
+  height: 0;
 }
 .form__message-ok::before {
   content: "";
