@@ -82,6 +82,7 @@
 
 	&:nth-child(9) {
 		animation-delay: 1800ms;
+		margin-top: 40px;
 	}
 
 	&:nth-child(10) {
@@ -330,6 +331,7 @@
 }
 
 .form__login-block {
+	width: 235px;
 	margin-top: 47px;
 
 	z-index: 1;
@@ -340,7 +342,6 @@
 	width: 154px;
 	min-height: 32px;
 	padding: 5px;
-	margin-top: 40px;
 
 	font-family: @font-pt;
 	font-size: 14px;
@@ -429,18 +430,20 @@
 		padding: 20px 24px 33px 20px;
 	}
 
-	.form__animation:nth-child(7) {
-		margin-bottom: 20px;
+	.form__animation {
+		&:nth-child(7) {
+			margin-bottom: 20px;
+		}
+
+		&:nth-child(9) {
+			order: 1;
+
+			margin-top: 80px;
+		}
 	}
 
 	.form__login-block {
 		margin-top: 87px;
-	}
-
-	.form__button {
-		order: 1;
-
-		margin-top: 80px;
 	}
 }
 

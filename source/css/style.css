@@ -529,6 +529,7 @@ img {
 .form__animation:nth-child(9) {
   -webkit-animation-delay: 1800ms;
           animation-delay: 1800ms;
+  margin-top: 40px;
 }
 .form__animation:nth-child(10) {
   -webkit-animation-delay: 2000ms;
@@ -734,6 +735,7 @@ img {
           box-shadow: 0 0 0 1px #f2f2f2;
 }
 .form__login-block {
+  width: 235px;
   margin-top: 47px;
   z-index: 1;
 }
@@ -742,7 +744,6 @@ img {
   width: 154px;
   min-height: 32px;
   padding: 5px;
-  margin-top: 40px;
   font-family: "PT Sans", "Arial", sans-serif;
   font-size: 14px;
   line-height: 18px;
@@ -871,14 +872,14 @@ img {
   .form__animation:nth-child(7) {
     margin-bottom: 20px;
   }
-  .form__login-block {
-    margin-top: 87px;
-  }
-  .form__button {
+  .form__animation:nth-child(9) {
     -webkit-box-ordinal-group: 2;
         -ms-flex-order: 1;
             order: 1;
     margin-top: 80px;
+  }
+  .form__login-block {
+    margin-top: 87px;
   }
 }
 .login-block {
