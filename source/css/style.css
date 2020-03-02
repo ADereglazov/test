@@ -683,6 +683,14 @@ img {
   -webkit-transform: rotate(-40deg);
           transform: rotate(-40deg);
 }
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  .form__select-wrapper::before {
+    content: none;
+  }
+  .form__select-wrapper::after {
+    content: none;
+  }
+}
 .form__radio-label {
   display: inline-block;
 }

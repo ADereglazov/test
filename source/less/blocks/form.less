@@ -262,6 +262,18 @@
 	}
 }
 
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+	.form__select-wrapper {
+		&::before {
+			content: none;
+		}
+
+		&::after {
+			content: none;
+		}
+	}
+}
+
 .form__radio-label {
 	display: inline-block;
 
