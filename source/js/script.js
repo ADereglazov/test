@@ -9,7 +9,6 @@ const modalWindow = document.querySelector('.modal');
 //------------------------------------------------------------------
 submitButton.addEventListener('click', function (evt) {
 	evt.preventDefault();
-	submitButton.classList.remove('form__animation');
 
 	if (!isValidEmail()) {
 		modSubmitButton();
