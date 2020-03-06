@@ -38,7 +38,6 @@ emailField.addEventListener('focusout', function () {
 
 emailField.addEventListener('input', function () {
 	removeErrorState(emailField, formMessage[0]);
-	formMessage[0].classList.remove('form__message-ok');
 });
 //------------------------------------------------------------------
 passwordField.addEventListener('focusout', function () {
@@ -47,7 +46,6 @@ passwordField.addEventListener('focusout', function () {
 
 passwordField.addEventListener('input', function () {
 	removeErrorState(passwordField, formMessage[1]);
-	formMessage[1].classList.remove('form__message-ok');
 });
 //------------------------------------------------------------------
 confirmPasswordField.addEventListener('focusout', function () {
@@ -56,7 +54,6 @@ confirmPasswordField.addEventListener('focusout', function () {
 
 confirmPasswordField.addEventListener('input', function () {
 	removeErrorState(confirmPasswordField, formMessage[2]);
-	formMessage[2].classList.remove('form__message-ok');
 });
 //------------------------------------------------------------------
 function modSubmitButton() {
@@ -68,6 +65,7 @@ function modSubmitButton() {
 function removeErrorState(inputField, errorTextElement) {
 	inputField.classList.remove('form__text-field--error');
 	errorTextElement.innerText = '';
+	errorTextElement.classList.remove('form__message-ok');
 }
 //------------------------------------------------------------------
 function isValidEmail() {
