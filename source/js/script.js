@@ -29,7 +29,7 @@ submitButton.addEventListener('click', function (evt) {
 	}
 
 	submitButton.classList.remove('form__button--error');
-	postData();
+	sendForm();
 });
 //------------------------------------------------------------------
 emailField.addEventListener('focusout', function () {
@@ -130,11 +130,11 @@ window.addEventListener('keydown', function (evt) {
 	}
 });
 //------------------------------------------------------------------
-function postData() {
+function sendForm() {
 	const formData = new FormData(form);
 	const oReq = new XMLHttpRequest();
 
-	oReq.open('POST', 'https://echo.htmlacademy.ru', true);
+	oReq.open('GET', 'server-ok.json', true);
 	oReq.send(formData);
 
 	oReq.onload = function() {
