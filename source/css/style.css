@@ -458,7 +458,7 @@ img {
   letter-spacing: -0.46px;
 }
 .form__description {
-  margin: 0 0 20px 0;
+  margin: 0 0 18px 0;
   font-weight: 300;
 }
 .form__form {
@@ -867,7 +867,7 @@ img {
 }
 @media (min-width: 660px) {
   .form {
-    padding: 20px 24px 33px 20px;
+    padding: 38px 24px 12px 20px;
   }
   .form__animation:nth-child(7) {
     margin-bottom: 20px;
@@ -880,6 +880,9 @@ img {
   }
   .form__login-block {
     margin-top: 87px;
+  }
+  .form__button {
+    margin-left: auto;
   }
 }
 .login-block {
